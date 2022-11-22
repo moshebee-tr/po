@@ -7,8 +7,6 @@ from flask import request
 import pandas_datareader.data as web
 import pandas as pd
 from datetime import datetime
-from datetime import date
-from dateutil.relativedelta import relativedelta
 from functools import reduce
 from pypfopt.expected_returns import mean_historical_return
 from pypfopt.risk_models import CovarianceShrinkage
@@ -21,7 +19,6 @@ pd.set_option('display.max_rows', None)
 
 app = Flask(__name__)
 CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello_world():
@@ -29,12 +26,10 @@ def hello_world():
 
 
 def get_stock(ticker):
-    end = datetime(2022,11,22)
-    start = datetime(2020,11,22)
-    # end = datetime.now() 
-    # start =  datetime.now() + relativedelta(months=-24)
+    start = datetime(2019,10,15)
+    end = datetime(2021,10,15)
 
-    data = web.DataReader(ticker,"yahoo",start,end)
+    data = web.DataReader(ticker,"yahoo",start=start,end=end)
     data[ticker] = data["Close"]
     data = data[ticker]
     print(data.head())
@@ -124,16 +119,7 @@ def post_me():
     #return "<p>post, me! " + ''.join(map(str, request.form.getlist('username[]'))) +"</p>"
 
 def main():
-  #calc_effient_mean_variance_optimization(['AAPL', 'GOOG'])
-
-  end = datetime.now() # datetime(2021,9,15)
-  start =  datetime.now() + relativedelta(months=-24) # datetime(2019,9,15)
-  # end = datetime(2021,9,15)
-  # start = datetime(2019,9,15)
-
-  print(end)
-  print(start)
-
+        calc_effient_mean_variance_optimization(['AAPL', 'GOOG'])
 
 if __name__ == "__main__":
     main()
