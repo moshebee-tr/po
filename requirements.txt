@@ -7,4 +7,6 @@ requests
 daal==2021.2.3
 PyPortfolioOpt
 scikit-learn
+flask-cors
+
 
