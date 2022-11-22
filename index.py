@@ -14,11 +14,14 @@ from pypfopt.expected_returns import mean_historical_return
 from pypfopt.risk_models import CovarianceShrinkage
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
+from flask_cors import CORS
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
 app = Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello_world():
@@ -26,10 +29,10 @@ def hello_world():
 
 
 def get_stock(ticker):
-    # end = datetime(2021,9,15)
-    # start = datetime(2019,9,15)
-    end = datetime.now() 
-    start =  datetime.now() + relativedelta(months=-24) 
+    end = datetime(2022,11,22)
+    start = datetime(2020,11,22)
+    # end = datetime.now() 
+    # start =  datetime.now() + relativedelta(months=-24)
 
     data = web.DataReader(ticker,"yahoo",start,end)
     data[ticker] = data["Close"]
@@ -125,6 +128,9 @@ def main():
 
   end = datetime.now() # datetime(2021,9,15)
   start =  datetime.now() + relativedelta(months=-24) # datetime(2019,9,15)
+  # end = datetime(2021,9,15)
+  # start = datetime(2019,9,15)
+
   print(end)
   print(start)
 
