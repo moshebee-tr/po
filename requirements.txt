@@ -1,0 +1,9 @@
+## pip install --ignore-installed -r requirements.txt
+Flask
+pandas
+pandas_datareader
+numpy==1.22.0
+requests
+daal==2021.2.3
+PyPortfolioOpt
+
