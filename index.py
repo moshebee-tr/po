@@ -12,7 +12,7 @@ from pypfopt.expected_returns import mean_historical_return
 from pypfopt.risk_models import CovarianceShrinkage
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -21,6 +21,7 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
+@cross_origin()
 def hello_world():
     return "<p>Hello, World!</p>"
 
@@ -98,6 +99,7 @@ def calc_effient_mean_conditional_value_at_risk(tickers):
 
 
 @app.route("/", methods=['POST'])
+@cross_origin()
 def post_me():
     error = None
     # example how to detect method
