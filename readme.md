@@ -9,3 +9,4 @@ export FLASK_APP=index.py
 export FLASK_ENV=development
 flask run
 ```
+![Example 1. Postman](howto1.png)
