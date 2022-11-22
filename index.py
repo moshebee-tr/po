@@ -26,8 +26,10 @@ def hello_world():
 
 
 def get_stock(ticker):
-    end = datetime.now() # datetime(2021,9,15)
-    start = date.today() + relativedelta(months=-24) # datetime(2019,9,15)
+    # end = datetime(2021,9,15)
+    # start = datetime(2019,9,15)
+    end = datetime.now() 
+    start =  datetime.now() + relativedelta(months=-24) 
 
     data = web.DataReader(ticker,"yahoo",start,end)
     data[ticker] = data["Close"]
@@ -119,7 +121,13 @@ def post_me():
     #return "<p>post, me! " + ''.join(map(str, request.form.getlist('username[]'))) +"</p>"
 
 def main():
-        calc_effient_mean_variance_optimization(['AAPL', 'GOOG'])
+  #calc_effient_mean_variance_optimization(['AAPL', 'GOOG'])
+
+  end = datetime.now() # datetime(2021,9,15)
+  start =  datetime.now() + relativedelta(months=-24) # datetime(2019,9,15)
+  print(end)
+  print(start)
+
 
 if __name__ == "__main__":
     main()
