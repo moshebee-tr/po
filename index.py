@@ -7,6 +7,8 @@ from flask import request
 import pandas_datareader.data as web
 import pandas as pd
 from datetime import datetime
+from datetime import date
+from dateutil.relativedelta import relativedelta
 from functools import reduce
 from pypfopt.expected_returns import mean_historical_return
 from pypfopt.risk_models import CovarianceShrinkage
@@ -24,8 +26,8 @@ def hello_world():
 
 
 def get_stock(ticker):
-    start = datetime(2019,9,15)
-    end = datetime(2021,9,15)
+    end = datetime.now() # datetime(2021,9,15)
+    start = date.today() + relativedelta(months=-24) # datetime(2019,9,15)
 
     data = web.DataReader(ticker,"yahoo",start,end)
     data[ticker] = data["Close"]
